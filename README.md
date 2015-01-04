@@ -11,7 +11,7 @@ Please see [How to get started with WebRTC and iOS without wasting 10 hours of y
 
 1. Decompress libWebRTC.a.tar.bz2.
     * ```libWebRTC.a``` is compressed because github file size limit ```100MB```.
-    * ``` $ tar xvzf libWebRTC.a.tar.bz2 ```
+    * ``` $ tar xvjf libWebRTC.a.tar.bz2 ```
 2. Build this project on Xcode, and run on ios device.
 3. Open [https://apprtc.appspot.com/](https://apprtc.appspot.com/) in Browser (Chrome or Firefox).
 4. Check room number at end of URL.
