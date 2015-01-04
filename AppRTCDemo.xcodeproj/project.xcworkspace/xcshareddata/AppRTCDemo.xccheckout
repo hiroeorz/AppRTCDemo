@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>83390ACB-3909-4B4D-822E-7B36A474BA73</string>
+	<key>IDESourceControlProjectName</key>
+	<string>AppRTCDemo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>BFB1AFB9723584E74255CED175009BEC403E4BF3</key>
+		<string>github.com:hiroeorz/AppRTCDemo.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>AppRTCDemo.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>BFB1AFB9723584E74255CED175009BEC403E4BF3</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:hiroeorz/AppRTCDemo.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BFB1AFB9723584E74255CED175009BEC403E4BF3</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BFB1AFB9723584E74255CED175009BEC403E4BF3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>AppRTCDemo</string>
+		</dict>
+	</array>
+</dict>
+</plist>
