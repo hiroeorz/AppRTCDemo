@@ -1,6 +1,6 @@
 /*
  * libjingle
- * Copyright 2013, Google Inc.
+ * Copyright 2014, Google Inc.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -25,13 +25,30 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#import "RTCMediaConstraints+JSON.h"
 
-#import "APPRTCAppDelegate.h"
+#import "RTCPair.h"
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
+static NSString const *kRTCMediaConstraintsMandatoryKey = @"mandatory";
+
+@implementation RTCMediaConstraints (JSON)
+
++ (RTCMediaConstraints *)constraintsFromJSONDictionary:
+    (NSDictionary *)dictionary {
+  NSDictionary *mandatory = dictionary[kRTCMediaConstraintsMandatoryKey];
+  NSMutableArray *mandatoryContraints =
+      [NSMutableArray arrayWithCapacity:[mandatory count]];
+  [mandatory enumerateKeysAndObjectsUsingBlock:^(
+      id key, id obj, BOOL *stop) {
+    [mandatoryContraints addObject:[[RTCPair alloc] initWithKey:key
+                                                          value:obj]];
+  }];
+  // TODO(tkchin): figure out json formats for optional constraints.
+  RTCMediaConstraints *constraints =
+      [[RTCMediaConstraints alloc]
+          initWithMandatoryConstraints:mandatoryContraints
+                   optionalConstraints:nil];
+  return constraints;
 }
+
+@end

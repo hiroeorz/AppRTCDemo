@@ -25,13 +25,25 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-#import "APPRTCAppDelegate.h"
+@class RTCPeerConnection;
+@class RTCSessionDescription;
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
-}
+extern NSString* const kRTCSessionDescriptionDelegateErrorDomain;
+extern int const kRTCSessionDescriptionDelegateErrorCode;
+
+// RTCSessionDescriptionDelegate is a protocol for listening to callback
+// messages when RTCSessionDescriptions are created or set.
+@protocol RTCSessionDescriptionDelegate<NSObject>
+
+// Called when creating a session.
+- (void)peerConnection:(RTCPeerConnection *)peerConnection
+    didCreateSessionDescription:(RTCSessionDescription *)sdp
+                          error:(NSError *)error;
+
+// Called when setting a local or remote description.
+- (void)peerConnection:(RTCPeerConnection *)peerConnection
+    didSetSessionDescriptionWithError:(NSError *)error;
+
+@end

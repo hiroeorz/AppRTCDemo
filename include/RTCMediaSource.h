@@ -25,13 +25,20 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-#import "APPRTCAppDelegate.h"
+#import "RTCTypes.h"
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
-}
+// RTCMediaSource is an ObjectiveC wrapper for MediaSourceInterface
+@interface RTCMediaSource : NSObject
+
+// The current state of the RTCMediaSource.
+@property(nonatomic, assign, readonly) RTCSourceState state;
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+// Disallow init and don't add to documentation
+- (id)init __attribute__((
+    unavailable("init is not a supported initializer for this class.")));
+#endif /* DOXYGEN_SHOULD_SKIP_THIS */
+
+@end

@@ -27,11 +27,14 @@
 
 #import <UIKit/UIKit.h>
 
-#import "APPRTCAppDelegate.h"
+// The view controller that is displayed when AppRTCDemo is loaded.
+@interface APPRTCViewController : UIViewController<UITextFieldDelegate>
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
-}
+@property(weak, nonatomic) IBOutlet UITextField* roomInput;
+@property(weak, nonatomic) IBOutlet UITextView* instructionsView;
+@property(weak, nonatomic) IBOutlet UITextView* logView;
+@property(weak, nonatomic) IBOutlet UIView* blackView;
+
+- (void)applicationWillResignActive:(UIApplication*)application;
+
+@end

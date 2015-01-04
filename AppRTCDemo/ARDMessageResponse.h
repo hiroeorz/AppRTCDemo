@@ -1,6 +1,6 @@
 /*
  * libjingle
- * Copyright 2013, Google Inc.
+ * Copyright 2014, Google Inc.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -25,13 +25,19 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-#import "APPRTCAppDelegate.h"
+typedef NS_ENUM(NSInteger, ARDMessageResultType) {
+  kARDMessageResultTypeUnknown,
+  kARDMessageResultTypeSuccess,
+  kARDMessageResultTypeInvalidRoom,
+  kARDMessageResultTypeInvalidClient
+};
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
-}
+@interface ARDMessageResponse : NSObject
+
+@property(nonatomic, readonly) ARDMessageResultType result;
+
++ (ARDMessageResponse *)responseFromJSONData:(NSData *)data;
+
+@end

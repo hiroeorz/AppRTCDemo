@@ -25,13 +25,35 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-#import "APPRTCAppDelegate.h"
+#import "RTCTypes.h"
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
-}
+@class RTCMediaStreamTrack;
+@protocol RTCMediaStreamTrackDelegate<NSObject>
+
+- (void)mediaStreamTrackDidChange:(RTCMediaStreamTrack*)mediaStreamTrack;
+
+@end
+
+// RTCMediaStreamTrack implements the interface common to RTCAudioTrack and
+// RTCVideoTrack.  Do not create an instance of this class, rather create one
+// of the derived classes.
+@interface RTCMediaStreamTrack : NSObject
+
+@property(nonatomic, readonly) NSString* kind;
+@property(nonatomic, readonly) NSString* label;
+@property(nonatomic, weak) id<RTCMediaStreamTrackDelegate> delegate;
+
+- (BOOL)isEnabled;
+- (BOOL)setEnabled:(BOOL)enabled;
+- (RTCTrackState)state;
+- (BOOL)setState:(RTCTrackState)state;
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+// Disallow init and don't add to documentation
+- (id)init __attribute__(
+    (unavailable("init is not a supported initializer for this class.")));
+#endif /* DOXYGEN_SHOULD_SKIP_THIS */
+
+@end

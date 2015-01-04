@@ -1,6 +1,6 @@
 /*
  * libjingle
- * Copyright 2013, Google Inc.
+ * Copyright 2014, Google Inc.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -25,13 +25,15 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-#import "APPRTCAppDelegate.h"
+@class RTCPeerConnection;
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
-}
+// RTCSessionDescriptionDelegate is a protocol for receiving statistic
+// reports from RTCPeerConnection.
+@protocol RTCStatsDelegate<NSObject>
+
+- (void)peerConnection:(RTCPeerConnection*)peerConnection
+           didGetStats:(NSArray*)stats;  // NSArray of RTCStatsReport*.
+
+@end

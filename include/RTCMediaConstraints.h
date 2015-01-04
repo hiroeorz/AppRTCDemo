@@ -25,13 +25,15 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-#import "APPRTCAppDelegate.h"
+// RTCMediaConstraints contains the media constraints to be used in
+// RTCPeerConnection and RTCMediaStream.
+@interface RTCMediaConstraints : NSObject
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
-}
+// Initializer for RTCMediaConstraints.  The parameters mandatory and optional
+// contain RTCPair objects with key/value for each constrant.
+- (id)initWithMandatoryConstraints:(NSArray *)mandatory
+               optionalConstraints:(NSArray *)optional;
+
+@end

@@ -25,13 +25,19 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#import <Foundation/Foundation.h>
+#if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
+#endif
 
-#import "APPRTCAppDelegate.h"
+@class RTCI420Frame;
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
-}
+@protocol RTCVideoRenderer<NSObject>
+
+// The size of the frame.
+- (void)setSize:(CGSize)size;
+
+// The frame to be displayed.
+- (void)renderFrame:(RTCI420Frame*)frame;
+
+@end

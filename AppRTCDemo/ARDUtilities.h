@@ -1,6 +1,6 @@
 /*
  * libjingle
- * Copyright 2013, Google Inc.
+ * Copyright 2014, Google Inc.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -25,13 +25,28 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-#import "APPRTCAppDelegate.h"
+@interface NSDictionary (ARDUtilites)
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
-}
+// Creates a dictionary with the keys and values in the JSON object.
++ (NSDictionary *)dictionaryWithJSONString:(NSString *)jsonString;
++ (NSDictionary *)dictionaryWithJSONData:(NSData *)jsonData;
+
+@end
+
+@interface NSURLConnection (ARDUtilities)
+
+// Issues an asynchronous request that calls back on main queue.
++ (void)sendAsyncRequest:(NSURLRequest *)request
+       completionHandler:(void (^)(NSURLResponse *response,
+                                   NSData *data,
+                                   NSError *error))completionHandler;
+
+// Posts data to the specified URL.
++ (void)sendAsyncPostToURL:(NSURL *)url
+                  withData:(NSData *)data
+         completionHandler:(void (^)(BOOL succeeded,
+                                     NSData *data))completionHandler;
+
+@end

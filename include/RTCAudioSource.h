@@ -25,13 +25,16 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#import "RTCMediaSource.h"
 
-#import "APPRTCAppDelegate.h"
+// RTCAudioSource is an ObjectiveC wrapper for AudioSourceInterface.  It is
+// used as the source for one or more RTCAudioTrack objects.
+@interface RTCAudioSource : RTCMediaSource
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
-}
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+// Disallow init and don't add to documentation
+- (id)init __attribute__(
+    (unavailable("init is not a supported initializer for this class.")));
+#endif /* DOXYGEN_SHOULD_SKIP_THIS */
+
+@end

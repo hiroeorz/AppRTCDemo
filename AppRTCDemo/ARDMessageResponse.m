@@ -1,6 +1,6 @@
 /*
  * libjingle
- * Copyright 2013, Google Inc.
+ * Copyright 2014, Google Inc.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -25,13 +25,45 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#import "ARDMessageResponse.h"
 
-#import "APPRTCAppDelegate.h"
+#import "ARDUtilities.h"
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
+static NSString const *kARDMessageResultKey = @"result";
+
+@interface ARDMessageResponse ()
+
+@property(nonatomic, assign) ARDMessageResultType result;
+
+@end
+
+@implementation ARDMessageResponse
+
+@synthesize result = _result;
+
++ (ARDMessageResponse *)responseFromJSONData:(NSData *)data {
+  NSDictionary *responseJSON = [NSDictionary dictionaryWithJSONData:data];
+  if (!responseJSON) {
+    return nil;
   }
+  ARDMessageResponse *response = [[ARDMessageResponse alloc] init];
+  response.result =
+      [[self class] resultTypeFromString:responseJSON[kARDMessageResultKey]];
+  return response;
 }
+
+#pragma mark - Private
+
++ (ARDMessageResultType)resultTypeFromString:(NSString *)resultString {
+  ARDMessageResultType result = kARDMessageResultTypeUnknown;
+  if ([resultString isEqualToString:@"SUCCESS"]) {
+    result = kARDMessageResultTypeSuccess;
+  } else if ([resultString isEqualToString:@"INVALID_CLIENT"]) {
+    result = kARDMessageResultTypeInvalidClient;
+  } else if ([resultString isEqualToString:@"INVALID_ROOM"]) {
+    result = kARDMessageResultTypeInvalidRoom;
+  }
+  return result;
+}
+
+@end

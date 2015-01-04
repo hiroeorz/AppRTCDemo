@@ -25,13 +25,54 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+// Enums that are common to the ObjectiveC version of the PeerConnection API.
 
-#import "APPRTCAppDelegate.h"
+// RTCICEConnectionState correspond to the states in webrtc::ICEConnectionState.
+typedef enum {
+  RTCICEConnectionNew,
+  RTCICEConnectionChecking,
+  RTCICEConnectionConnected,
+  RTCICEConnectionCompleted,
+  RTCICEConnectionFailed,
+  RTCICEConnectionDisconnected,
+  RTCICEConnectionClosed,
+} RTCICEConnectionState;
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
-}
+// RTCICEGatheringState the states in webrtc::ICEGatheringState.
+typedef enum {
+  RTCICEGatheringNew,
+  RTCICEGatheringGathering,
+  RTCICEGatheringComplete,
+} RTCICEGatheringState;
+
+// RTCSignalingState correspond to the states in webrtc::SignalingState.
+typedef enum {
+  RTCSignalingStable,
+  RTCSignalingHaveLocalOffer,
+  RTCSignalingHaveLocalPrAnswer,
+  RTCSignalingHaveRemoteOffer,
+  RTCSignalingHaveRemotePrAnswer,
+  RTCSignalingClosed,
+} RTCSignalingState;
+
+// RTCStatsOutputLevel correspond to webrtc::StatsOutputLevel
+typedef enum {
+  RTCStatsOutputLevelStandard,
+  RTCStatsOutputLevelDebug,
+} RTCStatsOutputLevel;
+
+// RTCSourceState corresponds to the states in webrtc::SourceState.
+typedef enum {
+  RTCSourceStateInitializing,
+  RTCSourceStateLive,
+  RTCSourceStateEnded,
+  RTCSourceStateMuted,
+} RTCSourceState;
+
+// RTCTrackState corresponds to the states in webrtc::TrackState.
+typedef enum {
+  RTCTrackStateInitializing,
+  RTCTrackStateLive,
+  RTCTrackStateEnded,
+  RTCTrackStateFailed,
+} RTCTrackState;

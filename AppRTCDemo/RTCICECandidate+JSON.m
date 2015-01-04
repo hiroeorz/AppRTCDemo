@@ -1,6 +1,6 @@
 /*
  * libjingle
- * Copyright 2013, Google Inc.
+ * Copyright 2014, Google Inc.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -25,13 +25,41 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#import "RTCICECandidate+JSON.h"
 
-#import "APPRTCAppDelegate.h"
+static NSString const *kRTCICECandidateTypeKey = @"type";
+static NSString const *kRTCICECandidateTypeValue = @"candidate";
+static NSString const *kRTCICECandidateMidKey = @"id";
+static NSString const *kRTCICECandidateMLineIndexKey = @"label";
+static NSString const *kRTCICECandidateSdpKey = @"candidate";
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
+@implementation RTCICECandidate (JSON)
+
++ (RTCICECandidate *)candidateFromJSONDictionary:(NSDictionary *)dictionary {
+  NSString *mid = dictionary[kRTCICECandidateMidKey];
+  NSString *sdp = dictionary[kRTCICECandidateSdpKey];
+  NSNumber *num = dictionary[kRTCICECandidateMLineIndexKey];
+  NSInteger mLineIndex = [num integerValue];
+  return [[RTCICECandidate alloc] initWithMid:mid index:mLineIndex sdp:sdp];
 }
+
+- (NSData *)JSONData {
+  NSDictionary *json = @{
+    kRTCICECandidateTypeKey : kRTCICECandidateTypeValue,
+    kRTCICECandidateMLineIndexKey : @(self.sdpMLineIndex),
+    kRTCICECandidateMidKey : self.sdpMid,
+    kRTCICECandidateSdpKey : self.sdp
+  };
+  NSError *error = nil;
+  NSData *data =
+      [NSJSONSerialization dataWithJSONObject:json
+                                      options:NSJSONWritingPrettyPrinted
+                                        error:&error];
+  if (error) {
+    NSLog(@"Error serializing JSON: %@", error);
+    return nil;
+  }
+  return data;
+}
+
+@end

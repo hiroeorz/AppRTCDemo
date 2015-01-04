@@ -1,6 +1,6 @@
 /*
  * libjingle
- * Copyright 2013, Google Inc.
+ * Copyright 2014, Google Inc.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -25,13 +25,26 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#import "RTCSessionDescription+JSON.h"
 
-#import "APPRTCAppDelegate.h"
+static NSString const *kRTCSessionDescriptionTypeKey = @"type";
+static NSString const *kRTCSessionDescriptionSdpKey = @"sdp";
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
+@implementation RTCSessionDescription (JSON)
+
++ (RTCSessionDescription *)descriptionFromJSONDictionary:
+    (NSDictionary *)dictionary {
+  NSString *type = dictionary[kRTCSessionDescriptionTypeKey];
+  NSString *sdp = dictionary[kRTCSessionDescriptionSdpKey];
+  return [[RTCSessionDescription alloc] initWithType:type sdp:sdp];
 }
+
+- (NSData *)JSONData {
+  NSDictionary *json = @{
+    kRTCSessionDescriptionTypeKey : self.type,
+    kRTCSessionDescriptionSdpKey : self.description
+  };
+  return [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
+}
+
+@end

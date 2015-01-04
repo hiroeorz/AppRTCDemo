@@ -25,13 +25,26 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-#import "APPRTCAppDelegate.h"
+// Description of an RFC 4566 Session.
+// RTCSessionDescription is an ObjectiveC wrapper for
+// SessionDescriptionInterface.
+@interface RTCSessionDescription : NSObject
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
-}
+// The SDP description.
+@property(nonatomic, copy, readonly) NSString *description;
+
+// The session type.
+@property(nonatomic, copy, readonly) NSString *type;
+
+- (id)initWithType:(NSString *)type sdp:(NSString *)sdp;
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+// Disallow init and don't add to documentation
+- (id)init __attribute__(
+    (unavailable("init is not a supported initializer for this class.")));
+#endif /* DOXYGEN_SHOULD_SKIP_THIS */
+
+@end
+

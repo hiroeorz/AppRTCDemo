@@ -25,13 +25,16 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+//
+// Prefix header for all source files of the 'AppRTCDemo' target in the
+// 'AppRTCDemo' project
+//
+
+#import <Availability.h>
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
+#warning "This project uses features only available in iOS SDK 6.0 and later."
+#endif
+
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
-#import "APPRTCAppDelegate.h"
-
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
-}

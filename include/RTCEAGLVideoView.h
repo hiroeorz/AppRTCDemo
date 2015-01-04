@@ -1,6 +1,6 @@
 /*
  * libjingle
- * Copyright 2013, Google Inc.
+ * Copyright 2014, Google Inc.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -25,13 +25,22 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "APPRTCAppDelegate.h"
+#import "RTCVideoRenderer.h"
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
-}
+@class RTCEAGLVideoView;
+@protocol RTCEAGLVideoViewDelegate
+
+- (void)videoView:(RTCEAGLVideoView*)videoView didChangeVideoSize:(CGSize)size;
+
+@end
+
+// RTCEAGLVideoView is an RTCVideoRenderer which renders i420 frames in its
+// bounds using OpenGLES 2.0.
+@interface RTCEAGLVideoView : UIView <RTCVideoRenderer>
+
+@property(nonatomic, weak) id<RTCEAGLVideoViewDelegate> delegate;
+
+@end

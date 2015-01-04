@@ -1,6 +1,6 @@
 /*
  * libjingle
- * Copyright 2013, Google Inc.
+ * Copyright 2014, Google Inc.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -25,13 +25,12 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#import "RTCICEServer.h"
 
-#import "APPRTCAppDelegate.h"
+@interface RTCICEServer (JSON)
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
-}
++ (RTCICEServer *)serverFromJSONDictionary:(NSDictionary *)dictionary;
+// CEOD provides different JSON, and this parses that.
++ (NSArray *)serversFromCEODJSONDictionary:(NSDictionary *)dictionary;
+
+@end

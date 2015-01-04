@@ -1,6 +1,6 @@
 /*
  * libjingle
- * Copyright 2013, Google Inc.
+ * Copyright 2014, Google Inc.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -25,13 +25,25 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-#import "APPRTCAppDelegate.h"
+typedef NS_ENUM(NSInteger, ARDRegisterResultType) {
+  kARDRegisterResultTypeUnknown,
+  kARDRegisterResultTypeSuccess,
+  kARDRegisterResultTypeFull
+};
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
-}
+// Result of registering with the GAE server.
+@interface ARDRegisterResponse : NSObject
+
+@property(nonatomic, readonly) ARDRegisterResultType result;
+@property(nonatomic, readonly) BOOL isInitiator;
+@property(nonatomic, readonly) NSString *roomId;
+@property(nonatomic, readonly) NSString *clientId;
+@property(nonatomic, readonly) NSArray *messages;
+@property(nonatomic, readonly) NSURL *webSocketURL;
+@property(nonatomic, readonly) NSURL *webSocketRestURL;
+
++ (ARDRegisterResponse *)responseFromJSONData:(NSData *)data;
+
+@end

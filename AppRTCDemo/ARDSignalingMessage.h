@@ -1,6 +1,6 @@
 /*
  * libjingle
- * Copyright 2013, Google Inc.
+ * Copyright 2014, Google Inc.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -25,13 +25,42 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-#import "APPRTCAppDelegate.h"
+#import "RTCICECandidate.h"
+#import "RTCSessionDescription.h"
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
-}
+typedef enum {
+  kARDSignalingMessageTypeCandidate,
+  kARDSignalingMessageTypeOffer,
+  kARDSignalingMessageTypeAnswer,
+  kARDSignalingMessageTypeBye,
+} ARDSignalingMessageType;
+
+@interface ARDSignalingMessage : NSObject
+
+@property(nonatomic, readonly) ARDSignalingMessageType type;
+
++ (ARDSignalingMessage *)messageFromJSONString:(NSString *)jsonString;
+- (NSData *)JSONData;
+
+@end
+
+@interface ARDICECandidateMessage : ARDSignalingMessage
+
+@property(nonatomic, readonly) RTCICECandidate *candidate;
+
+- (instancetype)initWithCandidate:(RTCICECandidate *)candidate;
+
+@end
+
+@interface ARDSessionDescriptionMessage : ARDSignalingMessage
+
+@property(nonatomic, readonly) RTCSessionDescription *sessionDescription;
+
+- (instancetype)initWithDescription:(RTCSessionDescription *)description;
+
+@end
+
+@interface ARDByeMessage : ARDSignalingMessage
+@end

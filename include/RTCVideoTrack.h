@@ -25,13 +25,23 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#import "RTCMediaStreamTrack.h"
 
-#import "APPRTCAppDelegate.h"
+@protocol RTCVideoRenderer;
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
-}
+// RTCVideoTrack is an ObjectiveC wrapper for VideoTrackInterface.
+@interface RTCVideoTrack : RTCMediaStreamTrack
+
+// Register a renderer that will render all frames received on this track.
+- (void)addRenderer:(id<RTCVideoRenderer>)renderer;
+
+// Deregister a renderer.
+- (void)removeRenderer:(id<RTCVideoRenderer>)renderer;
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+// Disallow init and don't add to documentation
+- (id)init __attribute__(
+    (unavailable("init is not a supported initializer for this class.")));
+#endif /* DOXYGEN_SHOULD_SKIP_THIS */
+
+@end

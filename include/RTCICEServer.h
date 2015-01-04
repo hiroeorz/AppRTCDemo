@@ -25,13 +25,25 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-#import "APPRTCAppDelegate.h"
+// RTCICEServer allows for the creation of ICEServer structs.
+@interface RTCICEServer : NSObject
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
-}
+// The server URI, username, and password.
+@property(nonatomic, strong, readonly) NSURL* URI;
+@property(nonatomic, copy, readonly) NSString* username;
+@property(nonatomic, copy, readonly) NSString* password;
+
+// Initializer for RTCICEServer taking uri, username, and password.
+- (id)initWithURI:(NSURL*)URI
+         username:(NSString*)username
+         password:(NSString*)password;
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+// Disallow init and don't add to documentation
+- (id)init __attribute__((
+    unavailable("init is not a supported initializer for this class.")));
+#endif /* DOXYGEN_SHOULD_SKIP_THIS */
+
+@end

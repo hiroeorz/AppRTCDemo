@@ -1,6 +1,6 @@
 /*
  * libjingle
- * Copyright 2013, Google Inc.
+ * Copyright 2014, Google Inc.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -25,13 +25,23 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#if TARGET_OS_IPHONE
+#error "This file targets OSX."
+#endif
 
-#import "APPRTCAppDelegate.h"
+#import <AppKit/NSOpenGLView.h>
 
-int main(int argc, char* argv[]) {
-  @autoreleasepool {
-    return UIApplicationMain(
-        argc, argv, nil, NSStringFromClass([APPRTCAppDelegate class]));
-  }
-}
+#import "RTCVideoRenderer.h"
+
+@class RTCNSGLVideoView;
+@protocol RTCNSGLVideoViewDelegate
+
+- (void)videoView:(RTCNSGLVideoView*)videoView didChangeVideoSize:(CGSize)size;
+
+@end
+
+@interface RTCNSGLVideoView : NSOpenGLView <RTCVideoRenderer>
+
+@property(nonatomic, weak) id<RTCNSGLVideoViewDelegate> delegate;
+
+@end
