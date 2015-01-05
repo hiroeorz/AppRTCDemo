@@ -42,7 +42,7 @@
 		54AFC3B21A59440800F9AB20 /* RTCSessionDescription+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 54AFC39C1A59440800F9AB20 /* RTCSessionDescription+JSON.m */; };
 		54AFC3B31A59440800F9AB20 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 54AFC39F1A59440800F9AB20 /* LICENSE */; };
 		54AFC3B41A59440800F9AB20 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 54AFC3A11A59440800F9AB20 /* SRWebSocket.m */; };
-		54AFC3B61A594EFB00F9AB20 /* libWebRTC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54AFC3B51A594EFB00F9AB20 /* libWebRTC.a */; };
+		54F724F01A5AE5060066174E /* libWebRTC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54F724EF1A5AE5060066174E /* libWebRTC.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,7 +134,7 @@
 		54AFC39F1A59440800F9AB20 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		54AFC3A01A59440800F9AB20 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
 		54AFC3A11A59440800F9AB20 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
-		54AFC3B51A594EFB00F9AB20 /* libWebRTC.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWebRTC.a; sourceTree = "<group>"; };
+		54F724EF1A5AE5060066174E /* libWebRTC.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWebRTC.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54AFC3B61A594EFB00F9AB20 /* libWebRTC.a in Frameworks */,
+				54F724F01A5AE5060066174E /* libWebRTC.a in Frameworks */,
 				54AFC3161A59417A00F9AB20 /* libsqlite3.dylib in Frameworks */,
 				54AFC3141A59416E00F9AB20 /* QuartzCore.framework in Frameworks */,
 				54AFC3121A59416300F9AB20 /* OpenGLES.framework in Frameworks */,
@@ -174,7 +174,7 @@
 		54AFC2C71A59408300F9AB20 = {
 			isa = PBXGroup;
 			children = (
-				54AFC3B51A594EFB00F9AB20 /* libWebRTC.a */,
+				54F724EF1A5AE5060066174E /* libWebRTC.a */,
 				54AFC37D1A59440800F9AB20 /* AppRTCDemo */,
 				54AFC3191A59426C00F9AB20 /* include */,
 				54AFC3151A59417A00F9AB20 /* libsqlite3.dylib */,
@@ -620,6 +620,7 @@
 				54AFC2F51A59408400F9AB20 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		54AFC2F61A59408400F9AB20 /* Build configuration list for PBXNativeTarget "AppRTCDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -628,6 +629,7 @@
 				54AFC2F81A59408400F9AB20 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
